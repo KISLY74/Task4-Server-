@@ -5,9 +5,12 @@ const app = express()
 const cors = require('cors')
 const models = require('./models/models')
 const sequelize = require('./db')
+const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 
 app.use(cors())
 app.use(express.json())
+app.use(errorHandler)
+
 
 const start = async () => {
   try {
