@@ -4,7 +4,7 @@ const PORT = process.env.PORT
 const app = express()
 const cors = require('cors')
 const models = require('./models/models')
-const sequelize = require('./db')
+const mongoose = require('mongoose')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const router = require('./routes/index')
 
@@ -15,8 +15,7 @@ app.use('/api', router)
 
 const start = async () => {
   try {
-    await sequelize.authenticate()
-    await sequelize.sync()
+    await mongoose.connect("mongodb+srv://sladky:17102001nikityz@task4.xfymnez.mongodb.net/?retryWrites=true&w=majority")
     app.listen(PORT, () => console.log(`server started on PORT ${PORT}`))
   }
   catch (e) {
